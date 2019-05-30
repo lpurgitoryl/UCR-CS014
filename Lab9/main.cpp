@@ -29,12 +29,71 @@ int main (){
     fillArrays(set1, set2, set3);
     clock_t Start = clock();
     //call sort function here
+    Quicksort_midpoint(set1, 0, NUMBERS_SIZE - 1);
     clock_t End = clock();
     int elapsedTime = (End - Start)/CLOCKS_PER_MS; // converts elapsed time from microseconds to milliseconds.
     
-    cout << "It took " << elapsedTime << " for the Quick_Sort_midpoint " << endl; 
+    cout << "It took " << elapsedTime << " for the Quick_Sort_midpoint on set1 " << endl; 
 
 
 return 0;
 
 }
+
+int Partition (int arr[], int i, int k){
+    int l = 0;
+    int h = 0;
+    int midpoint = 0;
+    int pivot = 0;
+    int temp = 0;
+    bool done = false;
+
+    //calculates middles element
+    // i is starting index of arr, k is last index of the arr 
+    midpoint = i + ( k - i) / 2 ;
+    pivot = arr[midpoint];
+
+    l = i;
+    h = k;
+
+    while (!done){
+        while (arr [l] < pivot){
+            ++l;
+        }
+
+        while (pivot < arr[h]){
+            --h;
+        }
+
+        if ( l >= h){
+            done = true;
+        }
+
+        else {
+            temp = arr[l];
+            arr[l] = arr[h];
+            arr[h] = temp;
+
+            ++l;
+            --h;
+        }
+       
+    }
+
+     return h;
+}
+
+void Quicksort_midpoint(int numbers[], int i, int k){
+   int j = 0;
+
+   if ( i >= k){
+       return;
+   } 
+
+   j = Partition(numbers, i, k);
+
+   Quicksort_midpoint(numbers, i , j);
+   Quicksort_midpoint(numbers, j + 1, k );
+}
+
+
