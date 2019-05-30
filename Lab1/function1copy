@@ -1,0 +1,75 @@
+
+        int counter = 1;
+
+        PlaylistNode* CurrNodePos = nullptr;
+        PlaylistNode* NewNodePos = nullptr;
+         PlaylistNode* prevNode = nullptr;
+
+        for( PlaylistNode* curr = head; curr != nullptr; curr = curr->GetNext()){
+            if( currPosition == (counter + 1) ){ //
+                prevNode = curr;
+            }
+            if(currPosition == counter){
+                CurrNodePos = curr;
+            }
+            if( newPos == counter ){
+                NewNodePos = curr;
+            }
+            counter++;
+        }
+        if(counter == 1){
+            return;
+        }
+        else if(counter == 2){//list of 2
+            PlaylistNode* tmp = tail;
+            tail = head;
+            head = tmp;
+            tail->setNull();
+            head->setPtr(tail);
+        }
+
+       else if( newPos >= counter){ // if new pos bigger than list or at end of list, meaning NewNodePos is nullptr
+            if(CurrNodePos == head){ //head moving to tail
+                head = head->GetNext();
+                tail->SetNext(CurrNodePos);
+                tail = CurrNodePos;
+                tail->setNull();
+                return;
+            }
+            else{//changing nodes other than head
+                prevNode->SetNext(CurrNodePos->GetNext() );
+                tail->SetNext(CurrNodePos);
+                tail = CurrNodePos;
+                tail->setNull();
+                return;
+            }
+            return;
+        }
+
+        else if( newPos <= 1 ){
+            // tail to in front of head and curr pos is tail
+            if(CurrNodePos == tail){ 
+                prevNode->setNull();
+                tail = prevNode;
+                CurrNodePos->SetNext(head);
+                head = CurrNodePos;
+                return;
+            }
+            else{
+                prevNode->SetNext(CurrNodePos->GetNext() );
+                CurrNodePos->SetNext(head);
+                head = CurrNodePos;
+                return;
+            }
+        }
+        
+        else{
+           for( PlaylistNode* curr = head; curr != nullptr; curr = curr->GetNext()){
+            if(curr->GetNext() == NewNodePos){
+                 prevNode->setPtr(CurrNodePos->GetNext() );
+                curr->InsertAfter(CurrNodePos);
+            }
+            
+            }
+            return;
+        }
