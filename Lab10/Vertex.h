@@ -10,6 +10,7 @@ using namespace std;
 
 class Vertex {
 public:
+//position in main vector and cost
   list<pair<int, int> > neighbors;
   string label;
   int distance;
