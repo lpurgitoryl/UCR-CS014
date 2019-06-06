@@ -17,10 +17,12 @@ int main(int argc, char* argv[]) {
   
   Graph g(ifs);
   ifs.close();
-  g.bfs();
-  string filename = strcat(argv[1] , ".dot");
-  g.output_graph(filename);
-  cout << "The End." << endl;
+  // g.bfs();
+  // string filename = strcat(argv[1] , ".dot");
+  // g.output_graph(filename);
+  // cout << "The End." << endl;
+  g.output_graph();// tester fun
+  cout << "end" << endl;
   
   return 0;
 }
