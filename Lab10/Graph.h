@@ -20,10 +20,10 @@ private:
 public:
   Graph();
   Graph(ifstream&);
- // ~Graph();
- // void output_graph(const string &);
- void output_graph(); //checks to see if the vector is correct, tester
-  //void bfs();
+  ~Graph();
+  void output_graph(const string &);
+  void output_graph(); //checks to see if the vector is correct, tester
+  void bfs();
 };
 
 #endif /* GRAPH_H_ */
